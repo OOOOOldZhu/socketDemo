@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Ssocket</title>
+    <script type="text/javascript" src="http://localhost:8080/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+<input id="msgContent" placeholder="发送的内容"></input>
+<button style="color: red" onclick="send()">发送</button>
+<script type="text/javascript">
+    var socket = io.connect('http://localhost:8080');
+    socket.on('news', function (data) {
+        console.log("已经连接 data = ",data);
+        //alert(data.hello);
+        //socket.emit('my other event', {my: 'data'});
+    });
+    //发送到后端的事件
+    function send() {
+        var value = document.getElementById('msgContent').value;
+        console.log(value)
+        socket.emit('my other event', value);
+    }
+</script>
+
+</body>
+</html>
